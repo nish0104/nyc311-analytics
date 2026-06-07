@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: nyc311
+    database: bigquery-public-data
+    schema: new_york_311
+    tables:
+      - name: 311_service_requests
+        description: "NYC 311 service requests from 2010 to present"
