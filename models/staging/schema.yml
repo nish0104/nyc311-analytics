@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: stg_311_requests
+    description: "Cleaned and typed NYC 311 service requests from BigQuery public data"
+    columns:
+      - name: unique_key
+        description: "Unique identifier for each service request"
+        tests:
+          - unique
+          - not_null
+
+      - name: created_date
+        description: "Date and time the request was created"
+        tests:
+          - not_null
+
+      - name: borough
+        description: "NYC borough where the request was filed"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['MANHATTAN', 'BROOKLYN', 'QUEENS', 'BRONX', 'STATEN ISLAND']
+
+      - name: agency_name
+        description: "Name of the city agency responsible for resolving the request"
+        tests:
+          - not_null
+
+      - name: complaint_type
+        description: "Type of complaint filed"
+        tests:
+          - not_null
+
+      - name: response_hours
+        description: "Hours taken to close the request (null if still open)"
