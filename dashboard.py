@@ -13,16 +13,7 @@ st.set_page_config(
 # BigQuery client
 @st.cache_resource
 def get_client():
-    import google.oauth2.credentials
-    secrets = st.secrets["gcp_service_account"]
-    credentials = google.oauth2.credentials.Credentials(
-        token=None,
-        refresh_token=secrets["refresh_token"],
-        client_id=secrets["client_id"],
-        client_secret=secrets["client_secret"],
-        token_uri="https://oauth2.googleapis.com/token"
-    )
-    return bigquery.Client(project="nyc311-analytics", credentials=credentials)
+    return bigquery.Client(project="nyc311-analytics")
 
 @st.cache_data(ttl=3600)
 def run_query(query):
