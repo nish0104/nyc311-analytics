@@ -25,6 +25,7 @@ renamed as (
     where borough != 'Unspecified'
       and borough is not null
       and created_date is not null
+      and (closed_date is null or closed_date >= created_date)
 )
 
 select * from renamed
