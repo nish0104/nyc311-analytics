@@ -1,0 +1,10 @@
+.git
+.gitignore
+target/
+dbt_packages/
+logs/
+assets/
+models/
+*.yml
+*.sql
+README.md

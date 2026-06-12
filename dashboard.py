@@ -13,7 +13,11 @@ st.set_page_config(
 # BigQuery client
 @st.cache_resource
 def get_client():
-    return bigquery.Client(project="nyc311-analytics")
+    import os
+    if os.environ.get("K_SERVICE"):  # Running on Cloud Run
+        return bigquery.Client(project="nyc311-analytics")
+    else:  # Running locally
+        return bigquery.Client(project="nyc311-analytics")
 
 @st.cache_data(ttl=3600)
 def run_query(query):
